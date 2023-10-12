@@ -4,7 +4,6 @@
   "description": "Common library for license auditor implementations.",
   "keywords": [
     "node",
-    "module",
     "dependency",
     "license",
     "audit"
@@ -42,7 +41,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "filedirname": "^2.7.0",
     "node-fetch": "2"
   },
   "scripts": {
