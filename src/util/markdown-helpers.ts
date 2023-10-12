@@ -1,37 +1,40 @@
-import { License } from "../models";
+import { Dependency } from "../models";
 
-export const getLicensesMarkdown = (license: License) => {
-  const { licenses, licenseUrl } = license;
+/**
+ * Gets the markdown string for the licenses of a dependency.
+ * @param dependency Dependency to get the licenses markdown for.
+ * @returns Markdown string for the licenses of the dependency.
+ */
+export const getLicensesMarkdown = (dependency: Dependency): string => {
+  // use the licenses array to construct a markdown string
+  // if the license.url is defined, use it to construct a markdown link
+  // separate licenses with a semicolon
+  // the licenses array will always have at least one entry
+  const { licenses } = dependency;
 
-  // both licenses and licenseUrl need to be arrays or strings
-  // licenseUrl can be undefined if licenses is a string
-  // licenseUrl can be an array of undefined if licenses is an array
-  // if these cases are not met, we need to throw an error
-  if (
-    (Array.isArray(licenses) && !Array.isArray(licenseUrl)) ||
-    (!Array.isArray(licenses) && Array.isArray(licenseUrl))
-  ) {
-    throw new Error(
-      `The license and licenseUrl properties of the license object must both be arrays or strings.`
-    );
-  }
+  // sort the licenses array by license name
+  licenses.sort((a, b) => {
+    if (a.license < b.license) {
+      return -1;
+    } else if (a.license > b.license) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
 
   let licenseString = "";
+  licenses.forEach((license, index) => {
+    if (index > 0) {
+      licenseString += "; ";
+    }
 
-  // construct a markdown link if we have a licenseUrl
-  if (Array.isArray(licenses) && Array.isArray(licenseUrl)) {
-    // we can expect the arrays to be the same length and that
-    // the index of the licenseUrl will match the index of the license
-    licenseString = licenseUrl
-      .map((url, index) =>
-        url ? `[${licenses[index]}](${url})` : licenses[index]
-      )
-      .join("; ");
-  } else if (licenseUrl) {
-    licenseString = `[${licenses}](${licenseUrl})`;
-  } else {
-    licenseString = licenses as string;
-  }
+    if (license.url) {
+      licenseString += `[${license.license}](${license.url})`;
+    } else {
+      licenseString += license.license;
+    }
+  });
 
   return licenseString;
 };
