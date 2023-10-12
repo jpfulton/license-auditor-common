@@ -1,8 +1,9 @@
-import { getConfiguration, getConfigurationFromUrl } from "./configuration.js";
-import { removeDuplicates } from "./duplicate-remover.js";
-import { getLicensesMarkdown } from "./markdown-helpers.js";
-import { DependencyOutputter, MetadataOutputter } from "./outputters.js";
-import { getCurrentVersionString } from "./root-project.js";
+import { getConfiguration, getConfigurationFromUrl } from "./configuration";
+import { removeDuplicates } from "./duplicate-remover";
+import { mapLicenseByGroupings } from "./map-license-by-groupings";
+import { getLicensesMarkdown } from "./markdown-helpers";
+import { DependencyOutputter, MetadataOutputter } from "./outputters";
+import { getCurrentVersionString } from "./root-project";
 
 export type { DependencyOutputter, MetadataOutputter };
 
@@ -11,5 +12,6 @@ export {
   getConfigurationFromUrl,
   getCurrentVersionString,
   getLicensesMarkdown,
+  mapLicenseByGroupings,
   removeDuplicates,
 };
