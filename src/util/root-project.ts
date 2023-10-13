@@ -27,7 +27,7 @@ export const getCurrentVersionString = (): string => {
 export const getCallingProjectVersionString = (): string => {
   try {
     const packageJson = JSON.parse(
-      readFileSync(`${__dirname}/../../../../../package.json`).toString()
+      readFileSync(`${__dirname}/../../../../../../package.json`).toString()
     );
     const version = packageJson?.version ?? "UNKNOWN";
     return version;
