@@ -8,6 +8,7 @@ export {
 export {
   DependencyOutputter,
   MetadataOutputter,
+  getCallingProjectVersionString,
   getConfiguration,
   getConfigurationFromUrl,
   getCurrentVersionString,
