@@ -1,6 +1,6 @@
 {
   "name": "@jpfulton/license-auditor-common",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Common library for license auditor implementations.",
   "keywords": [
     "node",
