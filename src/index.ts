@@ -10,6 +10,7 @@ export {
   MetadataOutputter,
   getConfiguration,
   getConfigurationFromUrl,
+  getConfigurationFromUrlWithToken,
   getCurrentVersionString,
   getLicensesMarkdown,
   mapLicenseByGroupings,
