@@ -1,4 +1,8 @@
-import { getConfiguration, getConfigurationFromUrl } from "./configuration";
+import {
+  getConfiguration,
+  getConfigurationFromUrl,
+  getConfigurationFromUrlWithToken,
+} from "./configuration";
 import { removeDuplicates } from "./duplicate-remover";
 import { mapLicenseByGroupings } from "./map-license-by-groupings";
 import { getLicensesMarkdown } from "./markdown-helpers";
@@ -10,6 +14,7 @@ export type { DependencyOutputter, MetadataOutputter };
 export {
   getConfiguration,
   getConfigurationFromUrl,
+  getConfigurationFromUrlWithToken,
   getCurrentVersionString,
   getLicensesMarkdown,
   mapLicenseByGroupings,

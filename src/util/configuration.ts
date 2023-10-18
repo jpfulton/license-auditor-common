@@ -58,3 +58,33 @@ export async function getConfigurationFromUrl(
 
   return configuration;
 }
+
+// return a configuration object from a remote file based on a URL over HTTP or HTTPS
+// using a token for authentication
+// if the file does not exist, throw an error
+export async function getConfigurationFromUrlWithToken(
+  url: string,
+  token: string
+): Promise<Configuration> {
+  // read the configuration JSON file into a Configuration object
+  // pull the file from the URL provided by the url parameter
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `token ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      `Unable to load configuration from URL: ${url} Status: ${response.status} was returned.`
+    );
+  }
+
+  const body = await response.text();
+
+  const configuration = JSON.parse(body) as Configuration;
+  configuration.configurationSource = "remote";
+  configuration.configurationFileName = url;
+
+  return configuration;
+}
