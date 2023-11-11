@@ -53,4 +53,8 @@ export interface DependencyLicense {
    * Path to the license file.
    */
   path?: string;
+  /**
+   * License text.
+   */
+  fullText?: string;
 }
